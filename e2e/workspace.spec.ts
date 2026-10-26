@@ -333,7 +333,9 @@ test("backup replacement is explicit, cancellable, atomic and private", async ({
   expect(after.data.households).toHaveLength(1);
   expect(requests.every((request) => !request.includes("80731"))).toBe(true);
   expect(
-    requests.every((request) => request.startsWith("http://127.0.0.1:4173/")),
+    requests.every((request) =>
+      request.startsWith(`${new URL(page.url()).origin}/`),
+    ),
   ).toBe(true);
 });
 

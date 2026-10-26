@@ -62,6 +62,18 @@ Portfolio captures are in `docs/screenshots/`; the actual walkthrough is generat
 
 The visual comparison checks the white/slate backgrounds, blue accent, system typography, header/household rail, settlement hierarchy, bill rows, date/scenario notes, landing workflow sections, and responsive continuation. Functional differences from concept art are intentional: only real household records appear; save/recovery status, totals, confirmations, and record limits are explicit. Decorative step numbers were darkened for accessibility.
 
+## Cloudflare deployment — 2026-10-26
+
+- Production: [proratesplit.pages.dev](https://proratesplit.pages.dev/). The initial application release `0d2a951` was built and published successfully in deployment [`ebf24466`](https://ebf24466.proratesplit.pages.dev/).
+- Cloudflare Pages serves the existing `out` static export. The API confirms `uses_functions: false`; no paid upgrade, runtime server, database service, or custom-domain/DNS change was made.
+- The GitHub source is `shawalkabirchy/ProrateSplit`, production branch `main`, with automatic production deployments enabled. Preview branch deployments and PR comments are disabled. Build command: `npm run build`; output: `out`; build variables: `NODE_VERSION=24` and `NEXT_TELEMETRY_DISABLED=1`.
+- The existing Playwright suite ran against the public HTTPS origin using `PLAYWRIGHT_BASE_URL`: **30 passed**, covering all ten scenarios in Chromium, Firefox and WebKit. Each test used an isolated synthetic browser workspace. No household records were uploaded to Cloudflare.
+- The live suite verified the canonical allocations, occupancy edits, independent copies, reload persistence, USD/BDT editing, deletion guards, stale tabs, quota/abort/unavailable-storage recovery, backup validation/replacement/cancellation, local-origin-only requests, accessibility scans, and 360/1440 px layouts. Chromium also generated both report PDF sizes.
+- Direct HTTP checks passed: `/` and `/app/` returned 200; `/app` redirected to `/app/` with 308; an unknown path returned 404. Desktop/mobile workspace screenshots were visually inspected with no new layout issue found.
+- Live maximum-household input-to-preview observations: **2.2 ms Chromium**, **13 ms Firefox**, **10 ms WebKit**. These are individual local browser measurements of the client calculation, not network or general-device performance guarantees.
+- Local lint and type checking passed after enabling remote-origin tests. Without `PLAYWRIGHT_BASE_URL`, the same suite continues to serve the local production export. GitHub Actions remains a separate verification workflow; Cloudflare deployments do not wait for its result.
+- Browser plugin not available; validation used the existing Playwright installation. Actual Safari/macOS/iPhone remains **Not run**. Local and production origins keep separate workspaces; moving data requires an explicit JSON backup/restore.
+
 ## Important limits
 
 ### Design comparison ledger
@@ -82,5 +94,5 @@ Both concept references and final browser captures were visually inspected. The 
 - Quota, unavailable-storage and transaction-abort conditions are fault-injected browser tests, not evidence of filling this laptop's disk.
 - WebKit automation is not actual Safari on macOS/iPhone. That environment is Not run on this Windows host.
 - Automated accessibility scans and focus checks are not accessibility certification.
-- No Vercel deployment has been performed. Hobby's commercial-use eligibility is a launch gate; no hosting-compliance claim is made.
+- Cloudflare Pages is the selected host. No Vercel deployment or paid hosting upgrade has been performed. Custom domains and actual Safari devices remain untested.
 - No customer outcomes, market-demand validation, revenue, or business savings are claimed.

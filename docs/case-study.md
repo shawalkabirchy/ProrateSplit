@@ -46,6 +46,6 @@ The maximum-household calculation benchmark measured a 22.74 ms median on the do
 - [ConsoleLog Studio](https://consolelog.studio/)
 - [Source repository](https://github.com/shawalkabirchy/ProrateSplit)
 - Local production demo: run `npm ci`, `npm run build`, then `npm run preview`.
-- Hosted demo: awaiting Vercel Hobby eligibility for the intended studio portfolio use.
+- [Hosted demo on Cloudflare Pages](https://proratesplit.pages.dev/).
 
 No payment collection, cloud sharing, legal settlement certification, or automatic reimbursement routing is included.

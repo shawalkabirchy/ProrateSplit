@@ -1,6 +1,6 @@
 # ProrateSplit
 
-**A fair split. Down to the day.**
+**A fair split. Down to the day.** [Open the live app](https://proratesplit.pages.dev/).
 
 A household bill splitter that explains how move-in and move-out dates change each person’s share. Built by [ConsoleLog Studio](https://consolelog.studio/) as a **self-initiated studio project**, using synthetic demonstration data.
 
@@ -106,9 +106,31 @@ To reproduce the portfolio screenshots and walkthrough, start the production pre
 
 ## Deployment
 
-The requested target is **Vercel Free**, using the Next.js preset, `npm run build`, and static output `out`. No runtime server or secret configuration is required. GitHub Actions verifies the public source before release.
+The deployment target is **Cloudflare Pages**, using the existing static export. No application server, Pages Functions, paid upgrade, or API secrets are needed. GitHub Actions verifies the source separately from Cloudflare's build.
 
-**Launch constraint:** [Vercel Hobby is restricted to personal, non-commercial use](https://vercel.com/docs/limits/fair-use-guidelines#commercial-usage). This ConsoleLog Studio portfolio demonstration is intended for client acquisition. Public Vercel deployment must wait until eligibility is established; no paid upgrade or alternate host has been enabled. The local production export remains fully runnable.
+Connect `shawalkabirchy/ProrateSplit` through the Pages GitHub integration with these settings:
+
+| Setting | Value |
+| --- | --- |
+| Production branch | `main` |
+| Framework preset | Next.js (Static HTML Export) |
+| Root directory | Repository root |
+| Build command | `npm run build` |
+| Build output directory | `out` |
+| Build environment variable | `NODE_VERSION=24` |
+| Build environment variable | `NEXT_TELEMETRY_DISABLED=1` |
+
+Pushes to `main` trigger production deployments; preview branch deployments and PR comments are disabled. See Cloudflare's [static Next.js guide](https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/) and [build-image version overrides](https://developers.cloudflare.com/pages/configuration/build-image/). Application code does not require a Cloudflare adapter or runtime environment variables.
+
+To run the existing browser suite against an HTTPS deployment in PowerShell:
+
+```powershell
+$env:PLAYWRIGHT_BASE_URL = 'https://proratesplit.pages.dev'
+npm run test:e2e
+Remove-Item Env:PLAYWRIGHT_BASE_URL
+```
+
+Without that variable the suite serves the local production export as before. Tests use isolated synthetic workspaces and verify that household data never appears in outgoing requests. Back up local data before moving to the hosted URL: each browser origin has a separate workspace.
 
 ## Troubleshooting
 

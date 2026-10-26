@@ -46,4 +46,6 @@ Source: https://github.com/shawalkabirchy/ProrateSplit
 
 This is a self-initiated ConsoleLog Studio project, not commissioned client work. If your team has a workflow like this, I’d be interested in how you handle it today.
 
-Visual: 30–60 second walkthrough. Add a hosted demo link only after an eligible deployment exists.
+Demo: https://proratesplit.pages.dev/
+
+Visual: 30–60 second walkthrough.
