@@ -6,7 +6,6 @@ import {
   BillsSection,
 } from "./household-views";
 
-import Link from "next/link";
 import { useMemo, useRef, useState, type ChangeEvent } from "react";
 import {
   ArrowLeft,
@@ -263,10 +262,12 @@ export function Workspace() {
       <header className="app-header no-print">
         <Brand />
         <nav aria-label="Workspace utilities">
-          <Link href="/" className="back-link" aria-label="Back to website">
+          {/* a full page load on purpose: the site has its own root layout and stylesheet */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a href="/" className="back-link" aria-label="Back to website">
             <ArrowLeft size={16} aria-hidden="true" />
             <span>Back to website</span>
-          </Link>
+          </a>
           <Button
             variant="ghost"
             aria-label="Backup"

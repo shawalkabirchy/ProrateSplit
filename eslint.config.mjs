@@ -12,5 +12,9 @@ export default defineConfig([
     "next-env.d.ts",
     "playwright-report/**",
     "test-results/**",
+    // the taste-skill kit, vendored as served (public/assets); not this project's source
+    "public/assets/**",
+    // the taste-skill dealer history, check reports and shots (git-ignored)
+    ".taste-skill/**",
   ]),
 ]);

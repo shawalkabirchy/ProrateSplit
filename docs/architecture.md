@@ -1,6 +1,6 @@
 # Architecture
 
-ProrateSplit is a Next.js App Router static export. `/` is a build-time landing page and `/app/` mounts the browser workspace. The application has no HTTP API, server actions, authentication, cloud database, or background service.
+ProrateSplit is a Next.js App Router static export. `/` is a build-time landing page and `/app/` mounts the browser workspace. Each has its own root layout (`src/app/(site)` and `src/app/(workspace)`), so moving between them is a full page load and neither page's stylesheet reaches the other. The application has no HTTP API, server actions, authentication, cloud database, or background service.
 
 ```mermaid
 flowchart LR
@@ -64,6 +64,8 @@ No uploads or telemetry are part of the application. Browser/site-origin storage
 
 ## UI and design
 
-The interface follows the generated white/slate and blue design references: a quiet product header, household rail, open summary band, settlement table, expandable bill calculations, restrained date/scenario notes, and a print-focused report. Controls come from the official shadcn/ui Radix Nova registry. System fonts avoid font-network dependencies.
+The landing page is built with the taste-skill 2.5 kit, copied (only the parts the page uses) into `public/assets` and loaded by the site layout: one section per screen, a fixed nav, the dealt centred hero with a live Cedar House window, the workspace window, an October calendar, the rounding statement, three setup cards, backups and questions. Every amount on it is computed at build time by `src/lib/calculations.ts`. Its page CSS is `public/assets/site.css`.
 
-Required functional additions to the design references are the saved/unsaved status, recovery actions, totals row, destructive-action confirmations, sample append limits, and complete bill/person forms. The landing step numbers are darkened to meet contrast requirements. Mobile tables deliberately scroll within their named region; the page itself must not overflow.
+The workspace keeps its quiet product header, household rail, summary band, settlement table, expandable bill calculations, date/scenario notes and print-focused report, restyled to the landing page's system: Outfit for every word, the ink #182239 and one accent #4263eb, one hairline, nothing under 13px, six person colours with no violet, and one hover/press motion on every button. Controls come from the official shadcn/ui Radix Nova registry. Outfit and DM Mono are self-hosted in `public/fonts`, so no page requests a font server.
+
+Required functional additions to the design references are the saved/unsaved status, recovery actions, totals row, destructive-action confirmations, sample append limits, and complete bill/person forms. On phones the settlement table becomes one block per person (name and balance, then share and paid), with explicit table roles so it stays a table to assistive technology; the page itself must not overflow.

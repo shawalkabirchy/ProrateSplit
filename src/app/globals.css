@@ -2,6 +2,10 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Outfit and DM Mono, self-hosted (public/fonts, SIL OFL 1.1): no request leaves the origin */
+@font-face { font-family: "Outfit"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("/fonts/outfit-latin-var.woff2") format("woff2"); }
+@font-face { font-family: "DM Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/dm-mono-latin-400.woff2") format("woff2"); }
+
 :root {
   --background: #ffffff;
   --foreground: #182239;
@@ -11,22 +15,23 @@
   --popover-foreground: #182239;
   --primary: #4263eb;
   --primary-foreground: #ffffff;
-  --secondary: #eef2ff;
-  --secondary-foreground: #2944b0;
-  --muted: #f7f9fc;
-  --muted-foreground: #5c6c85;
-  --accent: #eef2ff;
-  --accent-foreground: #2944b0;
+  --secondary: #eef1fd;
+  --secondary-foreground: #2f49c4;
+  --muted: #f5f6f8;
+  --muted-foreground: #5b6476;
+  --accent: #eef1fd;
+  --accent-foreground: #2f49c4;
   --destructive: #b42335;
-  --border: #e3e8ef;
-  --input: #d4dce8;
+  --border: #e1e3e8;
+  --input: #c9cdd5;
   --ring: #4263eb;
   --radius: 0.625rem;
+  --ease-ui: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @theme inline {
-  --font-sans: Arial, Helvetica, sans-serif;
-  --font-heading: Arial, Helvetica, sans-serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-heading: "Outfit", system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -65,8 +70,8 @@
 
 body {
   margin: 0;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.55;
 }
 button,
 input,
@@ -103,8 +108,9 @@ h1,
 h2,
 h3 {
   color: var(--foreground);
-  font-weight: 700;
-  letter-spacing: -0.035em;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  letter-spacing: -0.02em;
   line-height: 1.2;
 }
 a {

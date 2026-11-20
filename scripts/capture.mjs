@@ -33,7 +33,10 @@ try {
   });
   // These pauses give a viewer time to read the recorded product walkthrough.
   await page.waitForTimeout(3500);
-  await page.getByRole("link", { name: /Try a sample household/ }).click();
+  await page
+    .locator(".hero")
+    .getByRole("link", { name: /Try a sample household/ })
+    .click();
   await page
     .getByRole("heading", { name: "Cedar House", exact: true })
     .waitFor();
@@ -66,6 +69,8 @@ try {
     .getByRole("button", { name: "Edit Alice Morgan", exact: true })
     .click();
   await page.getByLabel("Departure date (optional)").fill("2026-10-26");
+  // let the dialog's fade-in and the backdrop blur finish before the still
+  await page.waitForTimeout(600);
   await page.screenshot({
     path: path.join(screenshots, "person-editor.png"),
     fullPage: true,

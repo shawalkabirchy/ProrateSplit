@@ -10,3 +10,4 @@ playwright-report/
 .DS_Store
 # Keep the original multi-project source brief local; publish only this product.
 files/
+.taste-skill/

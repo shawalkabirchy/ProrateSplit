@@ -55,14 +55,18 @@ test("landing, canonical sample, responsive layout and accessibility", async ({
   await page.goto("/");
   await expect(page).toHaveTitle(/ProrateSplit/);
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "A fair split.",
+    "Bill splitter for shared homes",
   );
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await page.screenshot({
     path: testInfo.outputPath("landing-desktop.png"),
     fullPage: true,
   });
-  await page.getByRole("link", { name: /Try a sample household/ }).click();
+  // the main action repeats in the nav, the hero and the close: take the hero's
+  await page
+    .locator(".hero")
+    .getByRole("link", { name: /Try a sample household/ })
+    .click();
   await expect(
     page.getByRole("heading", { name: "Cedar House", exact: true }),
   ).toBeVisible();
@@ -436,7 +440,10 @@ test("a full workspace survives a sample-link request", async ({ page }) => {
   ).toBeVisible();
   const before = await stored(page);
   await page.goto("/");
-  await page.getByRole("link", { name: /Try a sample household/ }).click();
+  await page
+    .locator(".hero")
+    .getByRole("link", { name: /Try a sample household/ })
+    .click();
   await expect(
     page.getByRole("heading", { name: "Cedar House", exact: true }),
   ).toBeVisible();

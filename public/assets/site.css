@@ -1,0 +1,256 @@
+/* ProrateSplit landing: page CSS only (taste-skill 2.5). Everything else is the kit's system. This
+   file holds the skip link, the client's mark, what sits inside the visuals (the hero window, the
+   app-frame's open bill) and the recipes' own rules (app-frame, calendar-frame, card --p-h). */
+
+/* the skip link: the header's first child, 1px until focused (system.md, Base) */
+.skip-link { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip-link:focus { width: auto; height: auto; clip-path: none; z-index: 20; padding: var(--s-2) var(--s-4); border-radius: var(--r-sm); background: var(--action); color: var(--action-ink); }
+
+/* the client's mark: the ÷ tile of the product */
+.ps-mark { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 7px; background: var(--p-accent); flex: none; }
+.ps-mark svg { width: 70%; height: 70%; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; }
+.ps-mark svg circle { fill: #fff; stroke: none; }
+.nav__logo .ps-mark svg, .footer__mark .ps-mark svg { width: 70%; height: 70%; }
+.ps-mark--crumb { width: 16px; height: 16px; border-radius: 4px; margin-right: 6px; }
+.ground-inverse .ps-mark { background: var(--p-accent); }
+
+/* ---------------------------------------------------------------- the hero window (inside the visual) */
+.ps-win { background: #fff; color: #182239; border-radius: 12px; overflow: hidden; font: 400 14px/1.4 var(--font-text);
+  box-shadow: 0 0 0 1px rgb(24 34 57 / .08), 0 30px 60px -30px rgb(24 34 57 / .45); }
+.ps-win__bar { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 14px; border-bottom: 1px solid rgb(24 34 57 / .08); font-size: 13px; color: #5b6476; }
+.ps-win__bar b { color: #182239; font-weight: 500; }
+.ps-win__dots { display: flex; gap: 6px; } .ps-win__dots i { width: 10px; height: 10px; border-radius: 50%; background: #dcdfe5; }
+.ps-sp { flex: 1; }
+.ps-win__body { display: grid; grid-template-columns: 236px minmax(0, 1fr); min-height: 420px; }
+.ps-people { border-right: 1px solid rgb(24 34 57 / .08); padding: 12px; display: grid; align-content: start; gap: 2px; }
+.ps-people__head { font-size: 13px; font-weight: 500; color: #5b6476; padding: 4px 8px 8px; }
+.ps-person { display: grid; grid-template-columns: 30px 1fr; gap: 1px 10px; padding: 8px; border-radius: 9px; font-size: 13px; }
+.ps-person:first-of-type { background: rgb(24 34 57 / .04); }
+.ps-person b { font-weight: 500; } .ps-person > span { grid-column: 2; color: #5b6476; }
+.ps-init { grid-row: 1 / span 2; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font: 500 12px/1 var(--font-text); font-style: normal; }
+.ps-init--0, .ps-bar--0, .ps-bar--m0 { --c: #4263eb; --t: #e3e9fd; }
+.ps-init--1, .ps-bar--1, .ps-bar--m1 { --c: #0e8a7e; --t: #d9f1ee; }
+/* the initials are text: a step darker than their bars, 4.5:1 on their tint */
+.ps-init--0 { --c: #2f49c4; } .ps-init--1 { --c: #0a6b62; }
+.ps-bar--m2 { --c: #c0712a; --t: #f7e7d7; }
+.ps-init { background: var(--t); color: var(--c); }
+.ps-split { display: grid; align-content: start; gap: 10px; padding: 12px 20px; min-width: 0; }
+.ps-billrow { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 12px; padding: 6px 12px; border: 1px solid rgb(24 34 57 / .1); border-radius: 10px; }
+.ps-billrow__ico { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: #e3e9fd; color: #4263eb; }
+.ps-billrow__ico svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+.ps-billrow > span:nth-child(2) { display: grid; color: #5b6476; font-size: 13px; line-height: 1.3; } .ps-billrow b { color: #182239; font-weight: 500; font-size: 14px; }
+.ps-billrow strong { font-weight: 500; font-variant-numeric: tabular-nums; }
+.ps-alloc { display: grid; gap: 6px; }
+.ps-alloc__row { display: grid; grid-template-columns: 124px minmax(0, 1fr) 76px; align-items: center; gap: 12px; height: 24px; }
+.ps-alloc__row > span:first-child { font-weight: 500; font-size: 14px; white-space: nowrap; } .ps-alloc__row small { font-weight: 400; font-size: 13px; color: #5b6476; }
+.ps-alloc__row > b { text-align: right; font-weight: 500; font-variant-numeric: tabular-nums; }
+.ps-track { position: relative; height: 12px; border-radius: 99px; background: rgb(24 34 57 / .06); }
+.ps-bar { position: absolute; inset: 0 var(--to, 0%) 0 var(--from, 0%); border-radius: 99px; background: var(--c); }
+.ps-acts { display: flex; align-items: center; gap: 8px; }
+.ps-acts span { height: 28px; padding: 0 14px; border-radius: 8px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 500; background: #182239; color: #fff; }
+.ps-acts span + span { background: rgb(24 34 57 / .06); color: #182239; }
+.ps-acts em { margin-left: auto; font-style: normal; font-weight: 500; font-size: 14px; }
+@media (max-width: 639px) {
+  .ps-win__body { grid-template-columns: 1fr; } .ps-people { display: none; }
+  .ps-win__bar > span:last-child { display: none; }
+  .ps-split { padding: 12px 14px; gap: 10px; }
+  .ps-alloc__row { grid-template-columns: 96px minmax(0, 1fr) 68px; gap: 8px; }
+  .ps-acts span + span { display: none; }
+}
+
+/* the centred hero: its two text blocks stay under half the container (centred text wider than that is
+   set left), and the line under the h1 is read text, so it takes the ink (7:1) */
+.hero--centred h1 { max-width: 620px; }
+.hero--centred .hero__lead { max-width: 620px; color: var(--ink); }
+
+/* ---------------------------------------------------------------- app-frame (sections-library.md, the whole recipe) */
+.app.ui { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); margin-top: var(--s-7); background: var(--u-bg); border: 1px solid var(--u-border); border-radius: var(--u-r); box-shadow: var(--u-shadow); }
+.app > .app__pane { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+.app > .app__pane + .app__pane { border-left: 1px solid var(--u-line); }
+.app > .app__pane > .ui-panel { width: 100%; border: 0; border-radius: 0; box-shadow: none; }
+.app > .app__pane::after { content: ""; position: absolute; inset: auto 0 0 0; height: 64px; background: linear-gradient(transparent, var(--u-bg)); pointer-events: none; }
+@media (min-width: 1024px) and (max-width: 1279px) { .app.ui { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); } }
+@media (max-width: 1023px) {
+  .app.ui { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  .app > .app__pane--list { max-height: 252px; }
+  .app > .app__pane--list::after { display: none; }
+  .app .ui-win__side { display: none; }
+  .app .ui-win__body { grid-template-columns: minmax(0, 1fr); }
+  .app > .app__pane + .app__pane { border-left: 0; border-top: 1px solid var(--u-line); }
+}
+@media (max-width: 639px) {
+  .app.ui { grid-template-rows: minmax(0, 1fr); }
+  .app > .app__pane--list { display: none; }
+  .app > .app__pane + .app__pane { border-top: 0; }
+}
+
+/* the open bill: the workspace's own bill view (inside the visual) */
+.ps-bill { display: grid; align-content: start; gap: 16px; padding: 20px 24px; background: var(--u-bg); color: var(--u-ink); font: 400 14px/1.4 var(--font-text); }
+.ps-bill__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.ps-bill__head > div { display: grid; gap: 2px; } .ps-bill__head b { font: 500 22px/1.2 var(--font-display); letter-spacing: -0.02em; }
+.ps-bill__eyebrow, .ps-bill__label { font-size: 13px; color: var(--u-muted); }
+.ps-bill__head strong { font: 500 22px/1.2 var(--font-display); font-variant-numeric: tabular-nums; }
+.ps-bill__meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.ps-bill__meta span { height: 26px; padding: 0 10px; border-radius: 99px; display: inline-flex; align-items: center; font-size: 13px; background: var(--u-fill); color: var(--u-text-2, var(--u-ink)); }
+.ps-bill__scale { display: grid; grid-template-columns: 1fr 1fr 1fr; margin-left: 232px; margin-right: 96px; font-size: 13px; color: var(--u-muted); }
+.ps-bill__scale span:nth-child(2) { text-align: center; } .ps-bill__scale span:last-child { text-align: right; }
+.ps-bill__people { list-style: none; margin: 0; padding: 0; display: grid; }
+.ps-bill__people li { display: grid; grid-template-columns: 32px 188px minmax(0, 1fr) 84px; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--u-line); }
+.ps-bill__people li:last-child { border-bottom: 1px solid var(--u-line); }
+.ps-bill__who { display: grid; } .ps-bill__who b { font-weight: 500; } .ps-bill__who small { font-size: 13px; color: var(--u-muted); }
+.ps-bill__share { text-align: right; font-weight: 500; font-variant-numeric: tabular-nums; }
+.ps-track--wide { height: 14px; }
+.ps-bill__segs, .ps-bill__owe { display: grid; gap: 6px; }
+.ps-bill__segs > div, .ps-bill__owe > div { display: flex; justify-content: space-between; gap: 16px; padding: 8px 12px; border-radius: 8px; background: var(--u-fill); font-size: 13px; }
+.ps-bill__segs > div > span:first-child { font-weight: 500; font-variant-numeric: tabular-nums; }
+.ps-bill__owe b { font-weight: 500; font-variant-numeric: tabular-nums; }
+@media (max-width: 1279px) {
+  .ps-bill__people li { grid-template-columns: 32px 160px minmax(0, 1fr) 84px; }
+  .ps-bill__scale { margin-left: 204px; }
+}
+@media (max-width: 639px) {
+  .ps-bill { padding: 16px; gap: 12px; }
+  .ps-bill__scale { display: none; }
+  .ps-bill__people li { grid-template-columns: 32px minmax(0, 1fr) 76px; }
+  .ps-bill__people .ps-track { grid-column: 2 / -1; grid-row: 2; }
+  .ps-bill__meta span:nth-child(n + 3) { display: none; }
+}
+
+/* ---------------------------------------------------------------- facts beside a split's text */
+.ps-facts { list-style: none; margin-inline: 0; margin-bottom: 0; padding: 0; display: grid; }
+.ps-facts li { padding: var(--s-3) 0; border-top: 1px solid var(--line); font-size: var(--t-body); }
+.ps-facts li:last-child { border-bottom: 1px solid var(--line); }
+
+/* ---------------------------------------------------------------- recipes' own numbers */
+#dates .frame--split { --ratio: 0px; min-height: 600px; }
+/* the split frames run down to their section's foot, so every section's content ends one gap above
+   the next (section-gaps); dates' .wrap is its grid (for the phone's two screens), so its one row
+   takes the height there */
+#privacy .frame--fill, #dates .frame--fill { --ratio: 0px; }
+@media (min-width: 1024px) { #dates > .wrap.grid { grid-template-rows: minmax(0, 1fr); } }
+@media (min-width: 640px) and (max-width: 1023px) { #dates > .wrap.grid { grid-template-rows: auto minmax(0, 1fr); } }
+@media (max-width: 1023px) { #dates .frame--fill { height: auto; } }
+.ps-steps .panel { --p-h: 336px; }
+/* the setup panels take what the screen leaves under the card text, so the cards end one gap above
+   the next section (336px at 1024x768, 468px at 1440x900) */
+@media (min-width: 1024px) { .ps-steps .panel { --p-h: max(300px, calc(100svh - 432px)); } }
+.ps-statement .t-lead { max-width: 52ch; }
+
+/* backgrounds.css pads and centres a grounded section by its own older spacing (0,3,0), over
+   system.css's section box (0,1,1); put the dealt grounds back on the system's one-screen box, its
+   h2 --padt under the section's top like every other section */
+main > section.section:is(.bg-dots, .bg-band):not(.section--hero) { display: block; min-height: 0; padding: var(--padt) 0 calc(var(--padb) + var(--bar)) !important; }
+@media (min-width: 640px) and (max-width: 1279px) {
+  main > section.section:is(.bg-dots, .bg-band):not(.section--hero) { display: flex; min-height: calc(var(--h, 1) * 100svh); }
+}
+
+/* the setup cards stack from 640 to 1023: the section takes two screens there (layout-v4.md, the tablet) */
+/* (the setup section stays one screen on a tablet: its cards become rows, below) */
+
+/* the closing name across the .wrap, hand-set from the container's width (ProrateSplit is 12 letters,
+   about 4.84 of its em wide in Outfit); room above for the face's ascenders, which the kit's .86 cuts */
+.close__word { font-size: min(256px, calc((100vw - 2 * var(--gut)) * .2)); line-height: 1.1; }
+
+
+/* ---------------------------------------------------------------- fixes from the checks */
+/* a narrow phone: the bar holds the mark, the main button and the menu button; the name stays the
+   link's text for screen readers */
+@media (max-width: 420px) {
+  .nav .ps-logo-word { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+@media (max-width: 639px) {
+  .nav__logo .ps-mark { width: 24px; height: 24px; }
+  .ps-pill-more { display: none; }
+}
+
+/* the calendar's event dates read as dates, not as buttons (inside the visual) */
+#dates .ui-cal__date, #dates .ui-cal__ev.is-now .ui-cal__date { background: none; box-shadow: none; }
+#dates .ui-cal__ev.is-now .ui-cal__date :is(b, i) { color: var(--u-ink); }
+
+/* the bill list's amount column: room for "$2,400.00" when the window lays out its columns */
+@container ui-win (min-width: 540px) {
+  .app .ui-win .ui-win__cols, .app .ui-win .ui-win__row { grid-template-columns: 24px 96px minmax(0, 1fr) 84px 76px; }
+}
+
+/* the dates split on a tablet: the facts step out and the frame holds the month whole, so the
+   section stays one screen at 768x1024 */
+@media (min-width: 640px) and (max-width: 1023px) {
+  #dates .ps-facts { display: none; }
+  #dates .frame--split { min-height: 524px; }
+}
+
+/* the setup cards on a tablet: stacked, words over the panel, across two screens; the panels take
+   their height from the screen's, so the cards fill both screens at 820x1180 and at 768x1024 */
+@media (min-width: 640px) and (max-width: 1023px) {
+  #setup { --h: 2; }
+  .ps-steps .panel { --p-h: calc(66.7svh - 246px); }
+}
+/* the setup cards on a phone: the section takes two screens */
+@media (max-width: 639px) {
+  #setup { --hm: 2; }
+  .ps-steps .panel { --p-h: 36.5svh; }
+}
+
+
+
+/* the rounding panel: the app's own arithmetic for one bill (inside the visual) */
+.ps-round { display: grid; padding: 20px 24px 8px; background: var(--u-bg); color: var(--u-ink); font: 400 14px/1.4 var(--font-text); font-variant-numeric: tabular-nums; }
+.ps-round__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; padding-bottom: 16px; }
+.ps-round__head b { font: 500 20px/1.2 var(--font-display); letter-spacing: -0.01em; }
+.ps-round__head span { font-size: 13px; color: var(--u-muted); }
+.ps-round__cols, .ps-round__rows li, .ps-round__total { display: grid; grid-template-columns: 32px minmax(0, 1fr) 120px 140px; align-items: center; gap: 12px; }
+.ps-round__cols { padding: 8px 0; border-bottom: 1px solid var(--u-line); font-size: 13px; color: var(--u-muted); }
+.ps-round__cols span:first-child { grid-column: 1 / 3; }
+.ps-round__cols span:last-child, .ps-round__total b { text-align: right; }
+.ps-round__rows { list-style: none; margin: 0; padding: 0; }
+.ps-round__rows li { padding: 12px 0; border-bottom: 1px solid var(--u-line); }
+.ps-round__rows b { font-weight: 500; }
+.ps-round__exact { color: var(--u-muted); }
+.ps-round__share { font-weight: 500; display: flex; justify-content: flex-end; align-items: center; gap: 8px; }
+.ps-round__share em { font-style: normal; font-size: 13px; padding: 1px 8px; border-radius: 99px; color: var(--u-accent-text); background: var(--u-tint); }
+.ps-round__total { padding: 14px 0; font-weight: 500; }
+.ps-round__total span { grid-column: 1 / 4; }
+@media (max-width: 639px) {
+  .ps-round { padding: 16px 16px 4px; }
+  .ps-round__cols, .ps-round__rows li, .ps-round__total { grid-template-columns: 28px minmax(0, 1fr) 104px; gap: 10px; }
+  .ps-round__exact, .ps-round__cols span:nth-child(2) { display: none; }
+  .ps-round__total span { grid-column: 1 / 3; }
+}
+
+/* the questions on a tablet: the stacked list keeps the desktop's air between answers */
+@media (min-width: 640px) and (max-width: 1023px) {
+  /* six answers on a tablet (one screen at 768x1024), their air following the screen's height so the
+     list ends one gap above the footer at 820x1180 too */
+  #questions .faq > .faq__item:nth-child(n + 7) { display: none; }
+  #questions .faq > .faq__item { padding-block: calc(var(--s-5) + (100svh - 1024px) * .096); }
+}
+/* five answers on a phone (one screen) */
+@media (max-width: 639px) { #questions .faq > .faq__item:nth-child(n + 6) { display: none; } }
+
+/* the centred hero below 1024: its words set left on the container's line (text that fills the
+   column reads better left-aligned, and every h1 starts on the left line); the window stays below */
+@media (max-width: 1023px) {
+  .hero--centred .hero__c { justify-items: start; text-align: start; margin-inline: 0; }
+  .hero--centred .btn-row { justify-content: flex-start; }
+}
+/* seven answers on a desktop: a touch less air between them so the list ends above the padding */
+@media (min-width: 1024px) { #questions .faq > .faq__item { padding-block: 22px; } #questions .faq > .faq__item:first-child { padding-top: 0; } }
+
+/* the setup cards from 1024 to 1279 go two-up (cards.css: a span-4 panel is never under 304px), so
+   the section takes two screens there: the first row on the first, the third card --padt under the
+   second screen's top, as a .g2 places a second group */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  #setup { --h: 2; }
+  .ps-steps { row-gap: calc(var(--padt) + var(--padb)); }
+  .ps-steps .panel { --p-h: 300px; }
+  /* the third card takes the second screen's row whole, its panel down to that screen's foot */
+  .ps-steps > .card:nth-child(3) { grid-column: 1 / -1; }
+  .ps-steps > .card:nth-child(3) .panel { --p-h: calc(100svh - 285px); }
+}
+
+/* visually hidden, read by screen readers */
+.ps-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; margin: 0; }
+/* the footer's column heads (h3, after the close's h2) in the kit's footer-head look */
+.footer h3.ps-foot-h { font: 500 var(--t-small)/1.4 var(--font-text); letter-spacing: 0; color: var(--muted); margin: 0 0 var(--s-4); }
+/* the calendar's days of the next and last month: 4.5:1 on the panel */
+#dates .ui-cal__d.is-out b { color: #5f665e; }
